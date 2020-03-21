@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateSchedule">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="24dp"
+        android:text="新建你的日程"
+        android:id="@+id/create_schedule_title"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/create_schedule_new_schedule_theme"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:singleLine="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:hint="主题"
+        android:layout_below="@id/create_schedule_title"
+        android:background="@drawable/edit_text_shape"/>
+
+    <EditText
+        android:id="@+id/create_schedule_new_schedule_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:hint="日程内容"
+        android:layout_below="@id/create_schedule_new_schedule_theme"
+        android:background="@drawable/edit_text_shape"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create_schedule_new_schedule_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/create_schedule_select_time"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="20dp"
+            android:background="#00000000"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/create_schedule_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:text="this is the time of schedule"
+                android:gravity="bottom|right|center_vertical"
+                android:textSize="20sp"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/create_schedule_complete_button"
+        android:scaleType="fitCenter"
+        android:background="@drawable/edit_text_shape" />
+
+</RelativeLayout>
