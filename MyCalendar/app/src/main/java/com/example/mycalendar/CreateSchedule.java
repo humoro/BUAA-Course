@@ -15,10 +15,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class CreateSchedule extends AppCompatActivity implements View.OnClickListener {
+
+    private final static int MSG_NETOUTOFWORK = 0x001;
+    private final static int MSG_CREATESCHEDULEFAULT = 0x010;
+    private final static int MSG_CREATESCHEDULESUCC = 0x100;
 
     private ImageButton completeButton;
     private ImageButton timeSelectorButton;
@@ -69,16 +74,38 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (msg.what == 0x0) {
-                finishThis();
+            switch (msg.what) {
+                case MSG_NETOUTOFWORK:
+                {
+                    ToastNetWorkOutOfTIme();
+                }
+                break;
+                case MSG_CREATESCHEDULEFAULT:
+                {
+                    ToastCreateScheduleFault();
+                }
+                break;
+                case MSG_CREATESCHEDULESUCC:
+                {
+                    finishThis();
+                }
+                break;
             }
         }
     };
 
+    private void ToastNetWorkOutOfTIme() {
+        Toast.makeText(this, "网络连接超时", Toast.LENGTH_LONG).show();
+    }
+
+    private void ToastCreateScheduleFault() {
+        Toast.makeText(this, "创建日程失败", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.create_schedule_select_time:
+            case R.id.create_schedule_select_time: // 日期选择按钮
             {
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
