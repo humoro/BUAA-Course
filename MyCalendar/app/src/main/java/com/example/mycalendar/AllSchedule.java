@@ -102,7 +102,6 @@ public class AllSchedule extends AppCompatActivity {
                     String jsonStr = EntityUtils.toString(response.getEntity());
                     Gson gson = new Gson();
                     ArrayList<Schedule> schedules = gson.fromJson(jsonStr, new TypeToken<ArrayList<Schedule>>(){}.getType());
-                    Log.d(TAG, "refreshList: " + jsonStr + " " + schedules.get(0).getTheme());
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(StringUtils.BundleListKey, schedules);
                     msg.what = MSG_GOTSCHEDULELISTSUCC;

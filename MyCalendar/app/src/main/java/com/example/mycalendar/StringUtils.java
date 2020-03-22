@@ -20,6 +20,8 @@ public class StringUtils {
     public static String HttpScheduleThemeKey = "ScheduleTheme";
     public static String HttpScheduleContentKey = "ScheduleContent";
     public static String HttpScheduleDateKey = "ScheduleDate";
+    public static String HttpNowday = "today";
+    public static String HttpNextFiveDay = "nextFiveDay";
     //表关键字索引
     public static String accoutTableUserNameKey = "username";
     public static String accoutTablePassWordKey = "password";
@@ -33,6 +35,7 @@ public class StringUtils {
     public static String BundleScheduleKey = "schedule";
     public static String BundleAccountKey = "account";
     public static String BundleListKey = "list";
+    public static String BundleStringKey = "string";
 
     public static boolean checkEmailFormat(String userName) {
         String regex = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";

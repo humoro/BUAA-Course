@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -25,12 +26,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -59,6 +57,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
     private ImageView todayIcon;
     private ImageView plusIcon;
     private ImageView scheduleIcon;
+    private ImageView accountIcon;
 
     private Calendar calendarShow = Calendar.getInstance(); // 显示的日期
     private Calendar calendarNow = Calendar.getInstance(); // 选择的基准日期
@@ -108,23 +107,26 @@ public class MainPage extends Activity  implements View.OnClickListener {
     private void initView() {
         //根据id找到对应的view
         viewPager = findViewById(R.id.stc_calendar_viewpager);
-        mYearTx = findViewById(R.id.stc_year_tx);
-        mMonthTx = findViewById(R.id.stc_month_tx);
+        mYearTx = findViewById(R.id.stc_main_page_year_tx);
+        mMonthTx = findViewById(R.id.stc_main_page_month_tx);
         mYearTx.getPaint().setFakeBoldText(true);
         mMonthTx.getPaint().setFakeBoldText(true);
         mMonthTx.setOnClickListener(this);
         mCalendarLayout = findViewById(R.id.stc_calendar_layout);
-        todayIcon = findViewById(R.id.stc_today_icon);
+        todayIcon = findViewById(R.id.stc_main_page_today_icon);
         todayIcon.setImageResource(R.mipmap.ic_calendar_view);
-        plusIcon = findViewById(R.id.stc_plus_icon);
-        scheduleIcon = findViewById(R.id.stc_schedule_icon);
+        plusIcon = findViewById(R.id.stc_main_page_plus_icon);
+        scheduleIcon = findViewById(R.id.stc_main_page_all_schedule_icon);
+        accountIcon = findViewById(R.id.stc_main_page_account_icon);
         //初始化控件的样式
         mYearTx.setOnClickListener(this);
         mMonthTx.setOnClickListener(this);
         todayIcon.setOnClickListener(this);
         plusIcon.setOnClickListener(this);
         scheduleIcon.setOnClickListener(this);
+        accountIcon.setOnClickListener(this);
         plusIcon.setImageResource(R.mipmap.ic_plus_sign);
+
 
         setTitleGirdView();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -221,6 +223,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
         mYearTx.setText(String.valueOf(cal.get(Calendar.YEAR)));
         mMonthTx.setText(JTimeUtils.getMonthName(cal.get(Calendar.MONTH) + 1));
         scheduleIcon.setImageResource(R.mipmap.ic_schedule_gray);
+        accountIcon.setImageResource(R.mipmap.ic_account_icon);
     }
 
     @Override
@@ -259,7 +262,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
     public void onClick(View v) {
         Log.d(TAG, "onClick: " + v.getId());
         switch (v.getId()) {
-            case R.id.stc_schedule_icon: // 跳转到所有日程的界面
+            case R.id.stc_main_page_all_schedule_icon: // 跳转到所有日程的界面
             {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(StringUtils.BundleAccountKey, this.user);
@@ -268,7 +271,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 startActivity(intent);
             }
             break;
-            case R.id.stc_today_icon: // 跳转到今天日期页面
+            case R.id.stc_main_page_today_icon: // 跳转到今天日期页面
             {
                 Log.d(TAG, "onClick: click the icon of today" );
                 Calendar calendarNow = Calendar.getInstance();
@@ -278,7 +281,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 refreshList(user);
             }
             break;
-            case R.id.stc_plus_icon:// 创建新日程
+            case R.id.stc_main_page_plus_icon:// 创建新日程
             {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(StringUtils.BundleAccountKey, this.user); // 传递账户信息
@@ -287,8 +290,8 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 startActivity(intent);
             }
             break;
-            case R.id.stc_month_tx:
-            case R.id.stc_year_tx:
+            case R.id.stc_main_page_month_tx:
+            case R.id.stc_main_page_year_tx:
             {
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
@@ -296,6 +299,15 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 int date = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog = new DatePickerDialog(this, setDateCallBack, year, month, date);
                 dialog.show();
+            }
+            break;
+            case R.id.stc_main_page_account_icon:
+            {
+                Intent intent = new Intent(this, AccountDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(StringUtils.BundleAccountKey, user);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
             break;
         }
