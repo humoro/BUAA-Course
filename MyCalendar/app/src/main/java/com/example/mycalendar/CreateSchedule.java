@@ -17,6 +17,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateSchedule extends AppCompatActivity implements View.OnClickListener {
@@ -121,11 +131,40 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
                 String content = contentText.getText().toString();
                 String time = timeText.getText().toString();
                 Schedule schedule = new Schedule(user.getUserName(), theme, content, time);
+                String username = user.getUserName();
+                String id = schedule.getId();
                 new Thread(() -> {
-                    DataBaseUtils.insertSchedule(schedule);
-                    Message msg = new Message();
-                    msg.what = 0x0;
-                    handler.sendMessage(msg);
+                    try{
+                        HttpClient httpclient= new DefaultHttpClient();
+                        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/calendarWeb_war_exploded/ScheduleCreate");//服务器地址，指向查询用户是否信息的servlet
+                        ArrayList<NameValuePair> params= new ArrayList<>();//将id装入list
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleIdKey, id));
+                        params.add(new BasicNameValuePair(StringUtils.HttpUserNameKey, username));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleThemeKey, theme));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleContentKey, content));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleDateKey, time));
+                        final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");
+                        httpPost.setEntity(entity);
+                        HttpResponse response = httpclient.execute(httpPost);
+                        Message msg = new Message();
+                        if (response.getStatusLine().getStatusCode() == 200) {
+                            int ans = Integer.parseInt(EntityUtils.toString(response.getEntity()));
+                            if (ans > 0) {
+                                msg.what = MSG_CREATESCHEDULESUCC;
+                            } else {
+                                msg.what = MSG_CREATESCHEDULEFAULT;
+                            }
+                        } else {
+                            msg.what = MSG_NETOUTOFWORK;
+                        }
+                        handler.sendMessage(msg);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+//                    DataBaseUtils.insertSchedule(schedule);
+//                    Message msg = new Message();
+//                    msg.what = 0x0;
+//                    handler.sendMessage(msg);
                 }).start();
             }
                 break;

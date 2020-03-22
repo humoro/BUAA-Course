@@ -11,16 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="558eb604-4b7a-4c0e-a9b0-e456c71847e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle____local_aars___D__AndroidProjects_MyCalendar_app_libs_httpclient_4_5_12_jar_unspecified_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle____local_aars___D__AndroidProjects_MyCalendar_app_libs_httpcore_4_4_13_jar_unspecified_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Encryption/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Encryption/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Encryption/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Encryption/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/CreateSchedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/CreateSchedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/mycalendar/StringUtils.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
