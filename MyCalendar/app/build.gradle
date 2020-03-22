@@ -49,4 +49,6 @@ dependencies {
     implementation files('libs\\commons-codec-1.14.jar')
     implementation files('libs\\httpclient-4.5.12.jar')
     implementation files('libs\\httpcore-4.4.13.jar')
+    implementation files('libs\\fastjson-1.2.62.jar')
+    implementation files('libs\\gson-2.8.5.jar')
 }

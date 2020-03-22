@@ -37,18 +37,14 @@ public class MainPageScheduleListViewAdapter extends BaseAdapter{ // 实现过�
     public View getView(int position, View convertView, ViewGroup parent) {
         ScheduleViewHolder holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.schedule_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.main_page_schedule_item, null);
             holder = new ScheduleViewHolder();
-            holder.dateHolder = convertView.findViewById(R.id.schedule_list_view_date);
-            holder.themeHoler = convertView.findViewById(R.id.schedule_list_view_theme);
-            holder.contentHolder = convertView.findViewById(R.id.schedule_list_view_content);
+            holder.themeHoler = convertView.findViewById(R.id.main_page_schedule_list_view_theme);
+            holder.contentHolder = convertView.findViewById(R.id.main_page_schedule_list_view_content);
             convertView.setTag(holder);
-
-
         }
         holder = (ScheduleViewHolder) convertView.getTag();
         Schedule schedule = (Schedule) getItem(position);
-        holder.dateHolder.setText("时间: " + schedule.getDate());
         holder.themeHoler.setText("主题: " +schedule.getTheme());
         holder.contentHolder.setText("内容: " + schedule.getContent());
         return convertView;

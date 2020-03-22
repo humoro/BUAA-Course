@@ -23,6 +23,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +48,8 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class MainPage extends Activity  implements View.OnClickListener {
+    private final static int MSG_NETWORKOUTOFTIME = 0x001;
+    private final static int MSG_GOTSCHEDULELISTSUCC = 0x010;
 
     //文本view
     private TextView mYearTx;
@@ -125,11 +143,26 @@ public class MainPage extends Activity  implements View.OnClickListener {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            List<Schedule> list = msg.getData().getParcelableArrayList(StringUtils.BundleListKey);
-            initTodayList(list);
-            setListViewItemClick(list);
+            switch (msg.what) {
+                case MSG_GOTSCHEDULELISTSUCC:
+                {
+                    List<Schedule> list = msg.getData().getParcelableArrayList(StringUtils.BundleListKey);
+                    initTodayList(list);
+                    setListViewItemClick(list);
+                }
+                break;
+                case MSG_NETWORKOUTOFTIME:
+                {
+                    ToastNetWorkOutOfTIme();
+                }
+                break;
+            }
         }
     };
+
+    private void ToastNetWorkOutOfTIme() {
+        Toast.makeText(this, "网络连接超时", Toast.LENGTH_LONG).show();
+    }
 
     private void setListViewItemClick(List<Schedule> list) {
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -144,12 +177,38 @@ public class MainPage extends Activity  implements View.OnClickListener {
 
     private void refreshList(UserAccount user) {
         new Thread(() -> {
-            ArrayList<Schedule> list = (ArrayList<Schedule>) DataBaseUtils.searchScheduleByUserNameADate(user.getUserName(), JTimeUtils.getDateString(calendarShow));
-            Bundle bundle = new Bundle();
-            bundle.putParcelableArrayList(StringUtils.BundleListKey, list);
-            Message msg = new Message();
-            msg.setData(bundle);
-            handler.sendMessage(msg);
+            try {
+                HttpClient httpclient= new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/calendarWeb_war_exploded/ScheduleGetByUserNameAndDate");//服务器地址，指向获取salt信息的servlet
+                ArrayList<NameValuePair> params= new ArrayList<>();//将id装入list
+                params.add(new BasicNameValuePair(StringUtils.HttpUserNameKey,user.getUserName()));
+                params.add(new BasicNameValuePair(StringUtils.HttpScheduleDateKey, JTimeUtils.getDateString(calendarShow)));
+                final UrlEncodedFormEntity saltEntity = new UrlEncodedFormEntity(params, "utf-8");
+                httpPost.setEntity(saltEntity);
+                HttpResponse response = httpclient.execute(httpPost);
+                Message msg = new Message();
+                if (response.getStatusLine().getStatusCode() == 200) {
+                    String jsonStr = EntityUtils.toString(response.getEntity());
+                    Gson gson = new Gson();
+                    ArrayList<Schedule> schedules = gson.fromJson(jsonStr, new TypeToken<ArrayList<Schedule>>(){}.getType());
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList(StringUtils.BundleListKey, schedules);
+                    msg.what = MSG_GOTSCHEDULELISTSUCC;
+                    msg.setData(bundle);
+                } else {
+                    msg.what = MSG_NETWORKOUTOFTIME; // 网络超时
+                }
+                handler.sendMessage(msg); //使用Message传递消息给线程
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+//            ArrayList<Schedule> list = (ArrayList<Schedule>) DataBaseUtils.searchScheduleByUserNameADate(user.getUserName(), JTimeUtils.getDateString(calendarShow));
+//            Bundle bundle = new Bundle();
+//            bundle.putParcelableArrayList(StringUtils.BundleListKey, list);
+//            Message msg = new Message();
+//            msg.setData(bundle);
+//            handler.sendMessage(msg);
         }).start();
     }
 

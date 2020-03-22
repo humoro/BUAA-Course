@@ -12,6 +12,8 @@ public class Schedule implements Serializable, Parcelable {
     private String content;
     private String date;
 
+    public Schedule() {}
+
     public Schedule(String userName, String theme, String content, String date) {
         this.id = String.valueOf(this.hashCode());
         this.userName = userName;

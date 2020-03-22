@@ -43,7 +43,7 @@ public class SearchListViewAdapter extends BaseAdapter implements Filterable { /
     public View getView(int position, View convertView, ViewGroup parent) {
         ScheduleViewHolder holder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.schedule_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.all_schedule_item, null);
             holder = new ScheduleViewHolder();
             holder.dateHolder = convertView.findViewById(R.id.schedule_list_view_date);
             holder.themeHoler = convertView.findViewById(R.id.schedule_list_view_theme);
