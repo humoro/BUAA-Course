@@ -170,6 +170,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
         calendarShow = Calendar.getInstance();
         Log.d(TAG, "onResume: flush the main page" );
         initData();
+        refreshList(user);
     }
 
     private void setTitleGirdView() {
