@@ -108,7 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 message.what = 0x001;
             } else {
                 String passwordS = DataBaseUtils.getUserAccountInfo(userName,DataBaseUtils.QPASSWORD);
-                if (password.equals(passwordS)) {
+                String salt = DataBaseUtils.getUserAccountInfo(userName, DataBaseUtils.QSALT);
+                String encryptPassword = EncryptUtils.MD5SaltEncryptor(password, salt);
+                assert encryptPassword != null;
+                if (encryptPassword.equals(passwordS)) {
                     message.what = 0x100;
                 } else {
                     message.what = 0x010;

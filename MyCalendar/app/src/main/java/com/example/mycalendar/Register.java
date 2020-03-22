@@ -63,7 +63,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 if (s.toString().isEmpty()) { // 输入用户名为空
                     userNameHint.setText("请输入用户名");
                     leagalUserName = false;
-                } else {
+                } else if (!StringUtils.checkEmailFormat(s.toString())){
+                    userNameHint.setText("邮件格式错误");
+                    leagalUserName = false;
+                } else  {
                     new Thread(()->{
                         boolean haveName = DataBaseUtils.isDuplicateUserName(s.toString());
                         Message msg = new Message();
@@ -162,7 +165,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             String accout = accountText.getText().toString();
             String passWord = passWordText.getText().toString();
             String salt = new EncryptUtils().getSalt();
-            new Thread(() -> DataBaseUtils.insertUserAccount(accout, passWord, salt)).start();
+            String stordPassword = EncryptUtils.MD5SaltEncryptor(passWord, salt);
+            new Thread(() -> DataBaseUtils.insertUserAccount(accout, stordPassword, salt)).start();
             Bundle data = new Bundle();
             data.putSerializable(StringUtils.BundleAccountKey, new UserAccount(accout, passWord));
             Toast.makeText(this, "Regist successfully!", Toast.LENGTH_LONG).show();
