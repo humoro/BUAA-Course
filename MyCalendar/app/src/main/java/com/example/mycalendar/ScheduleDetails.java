@@ -13,7 +13,21 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
+
 public class ScheduleDetails extends AppCompatActivity implements View.OnClickListener{
+    private final static int MSG_NETOUTOFWORK = 0x001;
+    private final static int MSG_DELETESCHEDULEFAULT = 0x010;
+    private final static int MSG_DELETESCHEDULESUCC = 0x100;
 
     private TextView detailTheme;
     private TextView detailContent;
@@ -60,9 +74,34 @@ public class ScheduleDetails extends AppCompatActivity implements View.OnClickLi
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            finishThis();
+            switch (msg.what) {
+                case MSG_NETOUTOFWORK:
+                {
+                    ToastNetWorkOutOfTIme();
+                }
+                break;
+                case MSG_DELETESCHEDULEFAULT:
+                {
+                    ToastCreateScheduleFault();
+                }
+                break;
+                case MSG_DELETESCHEDULESUCC:
+                {
+                    finishThis();
+                }
+                break;
+            }
         }
     };
+
+    private void ToastNetWorkOutOfTIme() {
+        Toast.makeText(this, "网络连接超时", Toast.LENGTH_LONG).show();
+    }
+
+    private void ToastCreateScheduleFault() {
+        Toast.makeText(this, "删除日程失败", Toast.LENGTH_LONG).show();
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -79,10 +118,34 @@ public class ScheduleDetails extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.schedule_details_delete_button:
                 new Thread(() -> {
-                    DataBaseUtils.deleteScheduleById(schedule.getId());
-                    Message message = new Message();
-                    message.what = 1;
-                    handler.sendMessage(message);
+                    String id = schedule.getId();
+                    try{
+                        HttpClient httpclient= new DefaultHttpClient();
+                        HttpPost httpPost = new HttpPost("http://10.0.2.2:8080/calendarWeb_war_exploded/ScheduleDelete");//服务器地址，指向查询用户是否信息的servlet
+                        ArrayList<NameValuePair> params= new ArrayList<>();//将id装入list
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleIdKey, id));
+                        final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");
+                        httpPost.setEntity(entity);
+                        HttpResponse response = httpclient.execute(httpPost);
+                        Message msg = new Message();
+                        if (response.getStatusLine().getStatusCode() == 200) {
+                            int ans = Integer.parseInt(EntityUtils.toString(response.getEntity()));
+                            if (ans > 0) {
+                                msg.what = MSG_DELETESCHEDULESUCC;
+                            } else {
+                                msg.what = MSG_DELETESCHEDULEFAULT;
+                            }
+                        } else {
+                            msg.what = MSG_NETOUTOFWORK;
+                        }
+                        handler.sendMessage(msg);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+//                    DataBaseUtils.deleteScheduleById(schedule.getId());
+//                    Message message = new Message();
+//                    message.what = 1;
+//                    handler.sendMessage(message);
                 }).start();
                 break;
         }
