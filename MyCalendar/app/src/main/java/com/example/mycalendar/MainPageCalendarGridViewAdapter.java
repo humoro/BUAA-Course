@@ -109,14 +109,14 @@ public class MainPageCalendarGridViewAdapter extends BaseAdapter {
         holder.itemDay.setText(String.valueOf(day));
         int todayMonth = Calendar.getInstance().get(Calendar.MONTH);
         if (todayMonth == calendar.get(Calendar.MONTH)) {
-            if (equalsDate(Calendar.getInstance().getTime(), myDate)) {
+            if (iMonth == iMonthViewCurrentMonth && equalsDate(Calendar.getInstance().getTime(), myDate) && todayPos < 0) {
                 todayPos = position;
                 //Log.d(TAG, "getView: this is adapter initial today layout");
                 holder.itemLayout.setBackgroundResource(R.drawable.stroke_ovel);
                 holder.itemDay.setTextColor(R.color.ltGray);
             }
         }
-        if (equalsDate(calendar.getTime(), myDate)) {
+        if (iMonth == iMonthViewCurrentMonth && equalsDate(calendar.getTime(), myDate)) {
             // 当前日期
             selectPos = position;
             //Log.d(TAG, "getView: this is adapter select date" + myDate.getDate() + " " + calendar.get(Calendar.DAY_OF_MONTH));

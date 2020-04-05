@@ -429,12 +429,14 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 MainPageCalendarGridViewAdapter mAdapter = (MainPageCalendarGridViewAdapter) parent.getAdapter();
                 //先把原先选定的view的样式还原
                 View selectView = parent.getChildAt(mAdapter.selectPos);
+                Log.d(TAG, "onItemClick2: " + mAdapter.selectPos);
                 DayViewHolder selectHolder = (DayViewHolder) selectView.getTag();
                 selectHolder.itemLayout.setBackgroundColor(Color.TRANSPARENT);
                 selectHolder.itemDay.setTextColor(R.color.ltGray);
                 //如果是当月，那么今天用空心圆标出来
                 if (calendarNow.get(Calendar.YEAR) == calendarShow.get(Calendar.YEAR) &&
                         calendarNow.get(Calendar.MONTH) == calendarShow.get(Calendar.MONTH)) {
+                    Log.d(TAG, "onItemClick3: " + calendarShow.get(Calendar.MONTH) + 1);
                     View todayView = parent.getChildAt(mAdapter.todayPos);
                     DayViewHolder todayHolder = (DayViewHolder) todayView.getTag();
                     todayHolder.itemLayout.setBackgroundResource(R.drawable.stroke_ovel);
