@@ -19,6 +19,7 @@ public class Schedule implements Serializable, Parcelable {
         this.userName = userName;
         this.content = content;
         this.date = date;
+
         this.theme = theme;
     }
 

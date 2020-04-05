@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textSize="24dp"
+        android:layout_marginTop="10dp"
         android:text="新建你的日程"
         android:id="@+id/create_schedule_title"
         android:gravity="center"/>
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:singleLine="true"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
         android:hint="主题"

@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,10 +43,12 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
     private final static int MSG_CREATESCHEDULESUCC = 0x100;
 
     private ImageButton completeButton;
-    private ImageButton timeSelectorButton;
+    private ImageButton dateSelectorButton;
+    private ImageButton timeSelectButton;
     private UserAccount user;
     private EditText themeText;
     private EditText contentText;
+    private TextView dateText;
     private TextView timeText;
 
     @Override
@@ -60,22 +64,31 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
     private void initView() {
         // 根据id找到每个View
         completeButton = findViewById(R.id.create_schedule_complete_button);
-        timeSelectorButton = findViewById(R.id.create_schedule_select_date);
-        timeText = findViewById(R.id.create_schedule_date_text);
+        dateSelectorButton = findViewById(R.id.create_schedule_select_date);
+        timeSelectButton = findViewById(R.id.create_schedule_select_time);
+        dateText = findViewById(R.id.create_schedule_date_text);
+        timeText = findViewById(R.id.create_schedule_time_text);
         themeText = findViewById(R.id.create_schedule_new_schedule_theme);
         contentText = findViewById(R.id.create_schedule_new_schedule_content);
         //初始化每个控件的样式
         completeButton.setImageResource(R.mipmap.ic_complete_icon);
-        timeSelectorButton.setImageResource(R.mipmap.ic_time_icon);
+        dateSelectorButton.setImageResource(R.mipmap.ic_create_date_icon);
+        timeSelectButton.setImageResource(R.mipmap.ic_create_time_icon);
         completeButton.setBackgroundColor(Color.TRANSPARENT);
-        timeSelectorButton.setBackgroundColor(Color.TRANSPARENT);
-        refreshTimeText(Calendar.getInstance());
+        dateSelectorButton.setBackgroundColor(Color.TRANSPARENT);
+        refreshDateText(Calendar.getInstance());
         completeButton.setOnClickListener(this);
-        timeSelectorButton.setOnClickListener(this);
+        dateSelectorButton.setOnClickListener(this);
+        timeSelectButton.setOnClickListener(this);
     }
 
-    private void refreshTimeText(Calendar calendar) { // 刷新时间显示字符串
-        timeText.setText(JTimeUtils.getDateString(calendar));
+    private void refreshDateText(Calendar calendar) { // 刷新时间显示字符串
+        dateText.setText(JTimeUtils.getDateString(calendar));
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void refreshTimeText(int hourOfDay, int minute) {
+        timeText.setText(JTimeUtils.getTimeString(hourOfDay, minute));
     }
 
     @Override
@@ -126,7 +139,14 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int date = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(this, setDateCallBack, year, month, date);
+                DatePickerDialog dialog = new DatePickerDialog(this, dateSelectListener, year, month, date);
+                dialog.show();
+            }
+                break;
+            case R.id.create_schedule_select_time:
+            {
+                Calendar calendar = Calendar.getInstance();
+                TimePickerDialog dialog = new TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,timeSelectListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true);
                 dialog.show();
             }
                 break;
@@ -134,7 +154,7 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
             {
                 String theme = themeText.getText().toString();
                 String content = contentText.getText().toString();
-                String time = timeText.getText().toString();
+                String time = dateText.getText().toString();
                 Schedule schedule = new Schedule(user.getUserName(), theme, content, time);
                 String username = user.getUserName();
                 String id = schedule.getId();
@@ -180,9 +200,14 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
         this.finish();
     }
 
-    private DatePickerDialog.OnDateSetListener setDateCallBack = (view, year, monthOfYear, dayOfMonth) -> {
+    @SuppressLint("ShowToast")
+    private TimePickerDialog.OnTimeSetListener timeSelectListener = (view, hourOfDay, minute) -> {
+        refreshTimeText(hourOfDay, minute);
+    };
+
+    private DatePickerDialog.OnDateSetListener dateSelectListener = (view, year, monthOfYear, dayOfMonth) -> {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, monthOfYear, dayOfMonth);
-        refreshTimeText(calendar);
+        refreshDateText(calendar);
     };
 }

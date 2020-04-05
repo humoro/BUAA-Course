@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class JTimeUtils {
+    public static String getTimeString(int hourOfDay, int minute) {
+        return (hourOfDay < 10?("0" + hourOfDay):hourOfDay) + ":" + (minute < 10?("0" + minute):minute);
+    }
+
     public static String getDateString(Calendar calendar) {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;

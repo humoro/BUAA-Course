@@ -68,7 +68,7 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
         content.setText(schedule.getContent());
         date.setText(schedule.getDate());
         deleteButton.setImageResource(R.mipmap.ic_delete_icon);
-        timePicker.setImageResource(R.mipmap.ic_time_icon);
+        timePicker.setImageResource(R.mipmap.ic_create_time_icon);
         completeButton.setImageResource(R.mipmap.ic_complete_icon);
 
         deleteButton.setOnClickListener(this);
