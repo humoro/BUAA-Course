@@ -1,26 +1,23 @@
-package com.example.mycalendar;
+package com.example.mycalendar.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import com.example.mycalendar.R;
+import com.example.mycalendar.viewholders.DayViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 
 public class MainPageCalendarGridViewAdapter extends BaseAdapter {

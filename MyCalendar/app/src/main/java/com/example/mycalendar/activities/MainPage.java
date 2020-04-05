@@ -1,10 +1,9 @@
-package com.example.mycalendar;
+package com.example.mycalendar.activities;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -26,6 +25,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mycalendar.adapters.MainPageCalendarGridViewAdapter;
+import com.example.mycalendar.adapters.MainPageScheduleListViewAdapter;
+import com.example.mycalendar.adapters.MainPagerTitleGridViewAdapter;
+import com.example.mycalendar.R;
+import com.example.mycalendar.Schedule;
+import com.example.mycalendar.utils.StringUtils;
+import com.example.mycalendar.UserAccount;
+import com.example.mycalendar.utils.ActivityStackUtils;
+import com.example.mycalendar.utils.JTimeUtils;
+import com.example.mycalendar.viewholders.DayViewHolder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

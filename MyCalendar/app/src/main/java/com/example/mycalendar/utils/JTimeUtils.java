@@ -1,11 +1,11 @@
-package com.example.mycalendar;
+package com.example.mycalendar.utils;
 
 
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class JTimeUtils {
-    static String getDateString(Calendar calendar) {
+    public static String getDateString(Calendar calendar) {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -47,7 +47,7 @@ public class JTimeUtils {
         return map.get(weekday);
     }
 
-    static String getMonthName(int month) {
+    public static String getMonthName(int month) {
         HashMap<Integer, String> map = new HashMap<Integer, String>(){
             {
                 put(1, "一月");

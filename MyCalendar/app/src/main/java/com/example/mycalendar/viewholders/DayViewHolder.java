@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.viewholders;
 
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

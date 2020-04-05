@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.utils;
 
 import java.util.regex.Pattern;
 

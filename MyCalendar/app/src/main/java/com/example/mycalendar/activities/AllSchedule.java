@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,16 +8,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mycalendar.adapters.FilterListener;
+import com.example.mycalendar.R;
+import com.example.mycalendar.Schedule;
+import com.example.mycalendar.adapters.SearchListViewAdapter;
+import com.example.mycalendar.utils.StringUtils;
+import com.example.mycalendar.UserAccount;
+import com.example.mycalendar.utils.ActivityStackUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,8 +33,6 @@ import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class AllSchedule extends AppCompatActivity {
     private final static int MSG_NETWORKOUTOFTIME = 0x001;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateSchedule">
+    tools:context=".activities.CreateSchedule">
 
     <TextView
         android:layout_width="match_parent"
@@ -41,6 +41,41 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/create_schedule_new_schedule_content"
         android:layout_marginTop="40dp"
+        android:id="@+id/create_schedule_date_picker"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/create_schedule_select_date"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="20dp"
+            android:background="#00000000"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/create_schedule_date_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:text="@string/create_schedule_date"
+                android:gravity="bottom|right|center_vertical"
+                android:textSize="20sp"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create_schedule_date_picker"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -62,11 +97,10 @@
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
-                android:text="this is the time of schedule"
+                android:text="@string/create_schedule_time"
                 android:gravity="bottom|right|center_vertical"
                 android:textSize="20sp"
                 tools:ignore="RtlHardcoded" />
-
         </RelativeLayout>
     </LinearLayout>
 

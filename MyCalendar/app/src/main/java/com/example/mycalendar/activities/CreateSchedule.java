@@ -1,21 +1,26 @@
-package com.example.mycalendar;
+package com.example.mycalendar.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mycalendar.utils.ActivityStackUtils;
+import com.example.mycalendar.utils.JTimeUtils;
+import com.example.mycalendar.R;
+import com.example.mycalendar.Schedule;
+import com.example.mycalendar.utils.StringUtils;
+import com.example.mycalendar.UserAccount;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -55,8 +60,8 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
     private void initView() {
         // 根据id找到每个View
         completeButton = findViewById(R.id.create_schedule_complete_button);
-        timeSelectorButton = findViewById(R.id.create_schedule_select_time);
-        timeText = findViewById(R.id.create_schedule_time_text);
+        timeSelectorButton = findViewById(R.id.create_schedule_select_date);
+        timeText = findViewById(R.id.create_schedule_date_text);
         themeText = findViewById(R.id.create_schedule_new_schedule_theme);
         contentText = findViewById(R.id.create_schedule_new_schedule_content);
         //初始化每个控件的样式
@@ -115,7 +120,7 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.create_schedule_select_time: // 日期选择按钮
+            case R.id.create_schedule_select_date: // 日期选择按钮
             {
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);

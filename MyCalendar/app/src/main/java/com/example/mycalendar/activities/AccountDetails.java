@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mycalendar.adapters.AccountDetailsListViewAdapter;
+import com.example.mycalendar.utils.ActivityStackUtils;
+import com.example.mycalendar.utils.JTimeUtils;
+import com.example.mycalendar.R;
+import com.example.mycalendar.Schedule;
+import com.example.mycalendar.utils.StringUtils;
+import com.example.mycalendar.UserAccount;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

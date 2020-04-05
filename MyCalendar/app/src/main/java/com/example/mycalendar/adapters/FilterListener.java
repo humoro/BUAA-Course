@@ -1,4 +1,6 @@
-package com.example.mycalendar;
+package com.example.mycalendar.adapters;
+
+import com.example.mycalendar.Schedule;
 
 import java.util.List;
 

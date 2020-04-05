@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.adapters;
 
 
 import android.app.Activity;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.mycalendar.R;
 
 public class MainPagerTitleGridViewAdapter extends BaseAdapter {
 

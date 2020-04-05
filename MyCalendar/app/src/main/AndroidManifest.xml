@@ -13,23 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AccountDetails"
-            android:parentActivityName=".MainPage" />
-        <activity android:name=".EditSchedule" />
-        <activity android:name=".ScheduleDetails" />
+            android:name=".activities.AccountDetails"
+            android:parentActivityName=".activities.MainPage" />
+        <activity android:name=".activities.EditSchedule" />
+        <activity android:name=".activities.ScheduleDetails" />
         <activity
-            android:name=".CreateSchedule"
-            android:parentActivityName=".MainPage" />
+            android:name=".activities.CreateSchedule"
+            android:parentActivityName=".activities.MainPage" />
         <activity
-            android:name=".AllSchedule"
-            android:parentActivityName=".MainPage" />
+            android:name=".activities.AllSchedule"
+            android:parentActivityName=".activities.MainPage" />
         <activity
-            android:name=".MainPage"
+            android:name=".activities.MainPage"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Register"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".activities.Register"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;

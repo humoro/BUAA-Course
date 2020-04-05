@@ -1,6 +1,9 @@
-package com.example.mycalendar;
+package com.example.mycalendar.utils;
 
 import android.util.Log;
+
+import com.example.mycalendar.Schedule;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.adapters;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+
+import com.example.mycalendar.R;
+import com.example.mycalendar.Schedule;
+import com.example.mycalendar.viewholders.ScheduleViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

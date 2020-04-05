@@ -1,4 +1,4 @@
-package com.example.mycalendar;
+package com.example.mycalendar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mycalendar.R;
+import com.example.mycalendar.utils.StringUtils;
+import com.example.mycalendar.UserAccount;
+import com.example.mycalendar.utils.ActivityStackUtils;
+import com.example.mycalendar.utils.EncryptUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

@@ -30,7 +30,7 @@ public class Schedule implements Serializable, Parcelable {
         this.date = date;
     }
 
-    protected Schedule(Parcel in) {
+    public Schedule(Parcel in) {
         id = in.readString();
         userName = in.readString();
         theme = in.readString();
@@ -50,7 +50,7 @@ public class Schedule implements Serializable, Parcelable {
         }
     };
 
-    void setTheme(String theme) {
+    public void setTheme(String theme) {
         this.theme = theme;
     }
 
@@ -58,27 +58,27 @@ public class Schedule implements Serializable, Parcelable {
         this.content = content;
     }
 
-    void setDate(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    String getId() {
+    public String getId() {
         return this.id;
     }
 
-    String getUserName() {
+    public String getUserName() {
         return this.userName;
     }
 
-    String getTheme() {
+    public String getTheme() {
         return this.theme;
     }
 
-    String getContent() {
+    public String getContent() {
         return this.content;
     }
 
-    String getDate() {
+    public String getDate() {
         return this.date;
     }
 
