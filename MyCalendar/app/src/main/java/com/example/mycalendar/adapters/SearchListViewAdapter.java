@@ -1,5 +1,6 @@
 package com.example.mycalendar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class SearchListViewAdapter extends BaseAdapter implements Filterable { /
         return position;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ScheduleViewHolder holder = null;
@@ -50,17 +52,17 @@ public class SearchListViewAdapter extends BaseAdapter implements Filterable { /
             convertView = LayoutInflater.from(context).inflate(R.layout.all_schedule_item, null);
             holder = new ScheduleViewHolder();
             holder.dateHolder = convertView.findViewById(R.id.schedule_list_view_date);
+            holder.timeHolder = convertView.findViewById(R.id.schedule_list_view_time);
             holder.themeHoler = convertView.findViewById(R.id.schedule_list_view_theme);
             holder.contentHolder = convertView.findViewById(R.id.schedule_list_view_content);
             convertView.setTag(holder);
-
-
         }
         holder = (ScheduleViewHolder) convertView.getTag();
         Schedule schedule = (Schedule) getItem(position);
-        holder.dateHolder.setText("时间: " + schedule.getDate());
-        holder.themeHoler.setText("主题: " +schedule.getTheme());
-        holder.contentHolder.setText("内容: " + schedule.getContent());
+        holder.dateHolder.setText("日期：" + schedule.getDate());
+        holder.timeHolder.setText("时间：" + schedule.getTime());
+        holder.themeHoler.setText("主题：" +schedule.getTheme());
+        holder.contentHolder.setText("内容：" + schedule.getContent());
         return convertView;
     }
 

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="23dp">
         <LinearLayout
             android:id="@+id/schedule_details_title"
@@ -32,8 +33,8 @@
             android:background="@color/lltGray"
             android:layout_below="@id/schedule_details_title"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="23dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +63,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="15dp"
+                android:text="日期"/>
+            <TextView
+                android:id="@+id/schedule_details_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
                 android:text="时间"/>
         </LinearLayout>
 
@@ -78,8 +86,8 @@
 
             <ImageButton
                 android:id="@+id/schedule_details_edit_button"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="35dp"
                 android:layout_alignParentBottom="true"
                 android:scaleType="fitCenter"/>
@@ -91,7 +99,7 @@
         <View
             android:id="@+id/schedule_details_bottom_divide_line"
             android:layout_width="2dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:background="@color/lltGray"/>
         </RelativeLayout>
@@ -100,8 +108,8 @@
             android:layout_height="match_parent">
             <ImageButton
                 android:id="@+id/schedule_details_delete_button"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="35dp"
                 android:scaleType="fitCenter"
                 android:layout_alignParentBottom="true"/>

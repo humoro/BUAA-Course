@@ -5,30 +5,32 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Schedule implements Serializable, Parcelable {
+public class Schedule implements Serializable, Parcelable, Comparable<Schedule> {
     private String id;
     private String userName;
     private String theme;
     private String content;
     private String date;
+    private String time;
 
     public Schedule() {}
 
-    public Schedule(String userName, String theme, String content, String date) {
+    public Schedule(String userName, String theme, String content, String date, String time) {
         this.id = String.valueOf(this.hashCode());
         this.userName = userName;
         this.content = content;
         this.date = date;
-
         this.theme = theme;
+        this.time = time;
     }
 
-    public Schedule(String id, String userName,String theme,  String content, String date) {
+    public Schedule(String id, String userName,String theme,  String content, String date,  String time) {
         this.id = id;
         this.userName = userName;
         this.theme = theme;
         this.content = content;
         this.date = date;
+        this.time = time;
     }
 
     public Schedule(Parcel in) {
@@ -37,6 +39,7 @@ public class Schedule implements Serializable, Parcelable {
         theme = in.readString();
         content = in.readString();
         date = in.readString();
+        time = in.readString();
     }
 
     public static final Creator<Schedule> CREATOR = new Creator<Schedule>() {
@@ -63,6 +66,10 @@ public class Schedule implements Serializable, Parcelable {
         this.date = date;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getId() {
         return this.id;
     }
@@ -83,6 +90,10 @@ public class Schedule implements Serializable, Parcelable {
         return this.date;
     }
 
+    public String getTime() {
+        return this.time;
+    }
+
         @Override
     public int describeContents() {
         return 0;
@@ -95,5 +106,11 @@ public class Schedule implements Serializable, Parcelable {
         dest.writeString(theme);
         dest.writeString(content);
         dest.writeString(date);
+        dest.writeString(time);
+    }
+
+    @Override
+    public int compareTo(Schedule o) {
+        return this.time.compareTo(o.getTime());
     }
 }

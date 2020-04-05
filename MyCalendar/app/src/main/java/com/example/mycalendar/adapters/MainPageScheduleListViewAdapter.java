@@ -1,5 +1,6 @@
 package com.example.mycalendar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,20 +38,23 @@ public class MainPageScheduleListViewAdapter extends BaseAdapter{ // 实现过�
         return position;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ScheduleViewHolder holder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.main_page_schedule_item, null);
             holder = new ScheduleViewHolder();
+            holder.timeHolder = convertView.findViewById(R.id.main_page_schedule_list_view_time);
             holder.themeHoler = convertView.findViewById(R.id.main_page_schedule_list_view_theme);
             holder.contentHolder = convertView.findViewById(R.id.main_page_schedule_list_view_content);
             convertView.setTag(holder);
         }
         holder = (ScheduleViewHolder) convertView.getTag();
         Schedule schedule = (Schedule) getItem(position);
-        holder.themeHoler.setText("主题: " +schedule.getTheme());
-        holder.contentHolder.setText("内容: " + schedule.getContent());
+        holder.timeHolder.setText("时间：" + schedule.getTime());
+        holder.themeHoler.setText("主题：" +schedule.getTheme());
+        holder.contentHolder.setText("内容：" + schedule.getContent());
         return convertView;
     }
 }

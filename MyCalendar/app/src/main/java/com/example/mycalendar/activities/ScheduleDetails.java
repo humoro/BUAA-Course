@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,6 +38,7 @@ public class ScheduleDetails extends AppCompatActivity implements View.OnClickLi
     private TextView detailTheme;
     private TextView detailContent;
     private TextView detailDate;
+    private TextView detailTime;
 
     private ImageButton editButton;
     private ImageButton deleteButton;
@@ -56,6 +58,7 @@ public class ScheduleDetails extends AppCompatActivity implements View.OnClickLi
         detailTheme = findViewById(R.id.schedule_details_theme);
         detailContent = findViewById(R.id.schedule_details_content);
         detailDate = findViewById(R.id.schedule_details_date);
+        detailTime = findViewById(R.id.schedule_details_time);
         editButton = findViewById(R.id.schedule_details_edit_button);
         deleteButton = findViewById(R.id.schedule_details_delete_button);
         editButton.setOnClickListener(this);
@@ -64,9 +67,13 @@ public class ScheduleDetails extends AppCompatActivity implements View.OnClickLi
         Log.d("Schedules Details :", "initView  " + schedule.getContent());
         editButton.setImageResource(R.mipmap.ic_edit_icon);
         deleteButton.setImageResource(R.mipmap.ic_delete_icon);
-        detailTheme.setText("主题: " + schedule.getTheme());
-        detailContent.setText("内容: " + schedule.getContent());
-        detailDate.setText("日期: " + schedule.getDate());
+        editButton.setBackgroundColor(Color.TRANSPARENT);
+        deleteButton.setBackgroundColor(Color.TRANSPARENT);
+
+        detailTheme.setText("主题：" + schedule.getTheme());
+        detailContent.setText("内容：" + schedule.getContent());
+        detailDate.setText("日期：" + schedule.getDate());
+        detailTime.setText("时间：" +  schedule.getTime());
     }
 
     @Override

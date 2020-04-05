@@ -4,16 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.EditSchedule">
+    tools:context=".activities.EditSchedule"
+    android:layout_marginLeft="23dp"
+    android:layout_marginRight="23dp">
+
+    <LinearLayout
+        android:id="@+id/edit_schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑你的日程"
+            android:textSize="25dp"
+            android:textColor="@color/orange"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/edit_schedule_divide_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/lltGray"
+        android:layout_below="@id/edit_schedule_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <EditText
         android:id="@+id/edit_schedule_schedule_title"
         android:layout_width="match_parent"
+        android:layout_below="@id/edit_schedule_divide_line"
         android:layout_height="50dp"
         android:singleLine="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:hint="主题"
         android:background="@drawable/edit_text_shape"/>
 
@@ -29,10 +56,44 @@
         android:background="@drawable/edit_text_shape"/>
 
     <LinearLayout
+        android:id="@+id/edit_schedule_schedule_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_schedule_schedule_content"
         android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/edit_schedule_select_date"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="20dp"
+            android:background="#00000000"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/edit_schedule_date_text"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:text="this is the time of schedule"
+                android:gravity="bottom|right|center_vertical"
+                android:textSize="20sp"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_schedule_schedule_date"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -58,7 +119,6 @@
                 android:gravity="bottom|right|center_vertical"
                 android:textSize="20sp"
                 tools:ignore="RtlHardcoded" />
-
         </RelativeLayout>
     </LinearLayout>
 
@@ -74,8 +134,8 @@
 
             <ImageButton
                 android:id="@+id/edit_schedule_complete_button"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="35dp"
                 android:layout_alignParentBottom="true"
                 android:scaleType="fitCenter"/>
@@ -87,7 +147,7 @@
             <View
                 android:id="@+id/edit_schedule_bottom_divide_line"
                 android:layout_width="2dp"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/lltGray"/>
         </RelativeLayout>
@@ -96,8 +156,8 @@
             android:layout_height="match_parent">
             <ImageButton
                 android:id="@+id/edit_schedule_delete_button"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="35dp"
                 android:scaleType="fitCenter"
                 android:layout_alignParentBottom="true"/>

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="23dp"
+    android:layout_marginRight="23dp"
     tools:context=".activities.CreateSchedule">
 
     <TextView
@@ -11,9 +13,19 @@
         android:layout_height="40dp"
         android:textSize="24dp"
         android:layout_marginTop="10dp"
+        android:textColor="@color/orange"
         android:text="新建你的日程"
         android:id="@+id/create_schedule_title"
         android:gravity="center"/>
+    <View
+        android:id="@+id/schedule_details_divide_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/lltGray"
+        android:layout_below="@id/create_schedule_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <EditText
         android:id="@+id/create_schedule_new_schedule_theme"
@@ -21,10 +33,8 @@
         android:layout_height="50dp"
         android:singleLine="true"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="10dp"
         android:hint="主题"
-        android:layout_below="@id/create_schedule_title"
+        android:layout_below="@id/schedule_details_divide_line"
         android:background="@drawable/edit_text_shape"/>
 
     <EditText
@@ -108,7 +118,7 @@
 
     <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/create_schedule_complete_button"
         android:scaleType="fitCenter"

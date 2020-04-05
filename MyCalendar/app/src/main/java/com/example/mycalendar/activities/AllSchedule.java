@@ -16,6 +16,7 @@ import com.example.mycalendar.adapters.FilterListener;
 import com.example.mycalendar.R;
 import com.example.mycalendar.Schedule;
 import com.example.mycalendar.adapters.SearchListViewAdapter;
+import com.example.mycalendar.utils.SortUtils;
 import com.example.mycalendar.utils.StringUtils;
 import com.example.mycalendar.UserAccount;
 import com.example.mycalendar.utils.ActivityStackUtils;
@@ -101,6 +102,7 @@ public class AllSchedule extends AppCompatActivity {
                     String jsonStr = EntityUtils.toString(response.getEntity());
                     Gson gson = new Gson();
                     ArrayList<Schedule> schedules = gson.fromJson(jsonStr, new TypeToken<ArrayList<Schedule>>(){}.getType());
+                    SortUtils.sortSchedules(schedules); // 按照时间排序
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(StringUtils.BundleListKey, schedules);
                     msg.what = MSG_GOTSCHEDULELISTSUCC;

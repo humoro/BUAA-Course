@@ -3,7 +3,10 @@ package com.example.mycalendar.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -42,8 +45,10 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
     private EditText theme;
     private EditText content;
     private TextView date;
+    private TextView time;
     private ImageButton deleteButton;
     private ImageButton timePicker;
+    private ImageButton datePicker;
     private ImageButton completeButton;
 
     @Override
@@ -59,19 +64,26 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         theme = findViewById(R.id.edit_schedule_schedule_title);
         content = findViewById(R.id.edit_schedule_schedule_content);
-        date = findViewById(R.id.edit_schedule_time_text);
+        date = findViewById(R.id.edit_schedule_date_text);
+        time = findViewById(R.id.edit_schedule_time_text);
         deleteButton = findViewById(R.id.edit_schedule_delete_button);
+        datePicker = findViewById(R.id.edit_schedule_select_date);
         timePicker = findViewById(R.id.edit_schedule_select_time);
         completeButton = findViewById(R.id.edit_schedule_complete_button);
 
         theme.setText(schedule.getTheme());
         content.setText(schedule.getContent());
         date.setText(schedule.getDate());
+        time.setText(schedule.getTime());
         deleteButton.setImageResource(R.mipmap.ic_delete_icon);
+        datePicker.setImageResource(R.mipmap.ic_create_date_icon);
         timePicker.setImageResource(R.mipmap.ic_create_time_icon);
         completeButton.setImageResource(R.mipmap.ic_complete_icon);
+        completeButton.setBackgroundColor(Color.TRANSPARENT);
+        deleteButton.setBackgroundColor(Color.TRANSPARENT);
 
         deleteButton.setOnClickListener(this);
+        datePicker.setOnClickListener(this);
         timePicker.setOnClickListener(this);
         completeButton.setOnClickListener(this);
     }
@@ -158,13 +170,20 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
                 }).start();
             }
                 break;
-            case R.id.edit_schedule_select_time: // 选择时间
+            case R.id.edit_schedule_select_date: // 选择时间
             {
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int date = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog = new DatePickerDialog(this, setDateCallBack, year, month, date);
+                dialog.show();
+            }
+                break;
+            case R.id.edit_schedule_select_time:
+            {
+                Calendar calendar = Calendar.getInstance();
+                TimePickerDialog dialog = new TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,timeSelectListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true);
                 dialog.show();
             }
                 break;
@@ -176,6 +195,7 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
                 String theme = schedule.getTheme();
                 String content = schedule.getContent();
                 String date = schedule.getDate();
+                String time = schedule.getTime();
                 new Thread(() -> {
                     try{
                         HttpClient httpclient= new DefaultHttpClient();
@@ -185,6 +205,7 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
                         params.add(new BasicNameValuePair(StringUtils.HttpScheduleThemeKey, theme));
                         params.add(new BasicNameValuePair(StringUtils.HttpScheduleContentKey, content));
                         params.add(new BasicNameValuePair(StringUtils.HttpScheduleDateKey, date));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleTimeKey, time));
                         final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");
                         httpPost.setEntity(entity);
                         HttpResponse response = httpclient.execute(httpPost);
@@ -212,6 +233,11 @@ public class EditSchedule extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private TimePickerDialog.OnTimeSetListener timeSelectListener = (view, hourOfDay, minute) -> {
+        time.setText(JTimeUtils.getTimeString(hourOfDay, minute));
+        schedule.setTime(JTimeUtils.getTimeString(hourOfDay, minute));
+    };
 
     private DatePickerDialog.OnDateSetListener setDateCallBack = (view, year, monthOfYear, dayOfMonth) -> {
         Calendar calendar = Calendar.getInstance();

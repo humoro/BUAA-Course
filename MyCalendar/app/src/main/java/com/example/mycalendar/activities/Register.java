@@ -90,11 +90,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 if (s.toString().isEmpty()) { // 输入用户名为空
                     userNameHint.setText("请输入用户名");
                     leagalUserName = false;
+                } else if (!StringUtils.checkEmailFormat(s.toString())){
+                    userNameHint.setText("邮件格式错误");
+                    leagalUserName = false;
                 }
-//                else if (!StringUtils.checkEmailFormat(s.toString())){
-//                    userNameHint.setText("邮件格式错误");
-//                    leagalUserName = false;
-//                }
                 else  {
                     new Thread(()->{
                         try {

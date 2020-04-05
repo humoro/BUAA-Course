@@ -20,6 +20,7 @@ public class StringUtils {
     public static String HttpScheduleThemeKey = "ScheduleTheme";
     public static String HttpScheduleContentKey = "ScheduleContent";
     public static String HttpScheduleDateKey = "ScheduleDate";
+    public static String HttpScheduleTimeKey = "ScheduleTime";
     public static String HttpNowday = "today";
     public static String HttpNextFiveDay = "nextFiveDay";
     //表关键字索引
@@ -30,7 +31,8 @@ public class StringUtils {
     public static String scheduleTableIdKey = "id";
     public static String scheduleTableThemeKey = "theme";
     public static String scheduleTableContentKey = "content";
-    public static String scheduleTableDateKey = "time";
+    public static String scheduleTableDateKey = "date";
+    public static String scheduleTableTimeKey = "time";
     //bundle数据关键字
     public static String BundleScheduleKey = "schedule";
     public static String BundleAccountKey = "account";

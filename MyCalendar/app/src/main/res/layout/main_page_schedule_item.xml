@@ -10,6 +10,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:background="@drawable/edit_text_shape">
+
+        <TextView
+            android:id="@+id/main_page_schedule_list_view_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize = "end"
+            android:textColor="@color/ltGray"
+            android:textSize="@dimen/schedule_list_view_text_size"
+            tools:ignore="SpUsage" />
         <TextView
             android:id="@+id/main_page_schedule_list_view_theme"
             android:layout_width="match_parent"
@@ -18,6 +28,7 @@
             android:ellipsize = "end"
             android:textColor="@color/ltGray"
             android:textSize="@dimen/schedule_list_view_text_size"
+            android:layout_below="@id/main_page_schedule_list_view_time"
             tools:ignore="SpUsage" />
         <TextView
             android:id="@+id/main_page_schedule_list_view_content"

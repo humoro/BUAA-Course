@@ -76,6 +76,7 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
         timeSelectButton.setImageResource(R.mipmap.ic_create_time_icon);
         completeButton.setBackgroundColor(Color.TRANSPARENT);
         dateSelectorButton.setBackgroundColor(Color.TRANSPARENT);
+        timeSelectButton.setBackgroundColor(Color.TRANSPARENT);
         refreshDateText(Calendar.getInstance());
         completeButton.setOnClickListener(this);
         dateSelectorButton.setOnClickListener(this);
@@ -154,8 +155,9 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
             {
                 String theme = themeText.getText().toString();
                 String content = contentText.getText().toString();
-                String time = dateText.getText().toString();
-                Schedule schedule = new Schedule(user.getUserName(), theme, content, time);
+                String date = dateText.getText().toString();
+                String time = timeText.getText().toString();
+                Schedule schedule = new Schedule(user.getUserName(), theme, content, date,time);
                 String username = user.getUserName();
                 String id = schedule.getId();
                 new Thread(() -> {
@@ -167,7 +169,8 @@ public class CreateSchedule extends AppCompatActivity implements View.OnClickLis
                         params.add(new BasicNameValuePair(StringUtils.HttpUserNameKey, username));
                         params.add(new BasicNameValuePair(StringUtils.HttpScheduleThemeKey, theme));
                         params.add(new BasicNameValuePair(StringUtils.HttpScheduleContentKey, content));
-                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleDateKey, time));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleDateKey, date));
+                        params.add(new BasicNameValuePair(StringUtils.HttpScheduleTimeKey, time));
                         final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");
                         httpPost.setEntity(entity);
                         HttpResponse response = httpclient.execute(httpPost);
