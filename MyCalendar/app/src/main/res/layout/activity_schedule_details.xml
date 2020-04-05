@@ -41,8 +41,6 @@
             android:orientation="vertical"
             android:layout_below="@id/schedule_details_divide_line"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="23dp"
             android:background="@drawable/edit_text_shape">
             <TextView
                 android:id="@+id/schedule_details_theme"
