@@ -4,7 +4,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class DayViewHolder {
+import java.io.Serializable;
+
+public class DayViewHolder implements Serializable {
     public TextView itemDay;
     public RelativeLayout itemLayout;
+    public ImageView haveSchedule;
 }

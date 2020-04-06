@@ -8,12 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/stc_cal_grid_item_day"
+            android:id="@+id/stc_main_page_day_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="14sp"
             android:textColor="#8f8f8f"/>
+
+        <ImageView
+            android:id="@+id/stc_main_page_have_schedule"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_below="@id/stc_main_page_day_item"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
+
 
 </LinearLayout>

@@ -426,7 +426,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
 
         GridView gView = setGirdView();;
         tempSelected.add(Calendar.MONTH, count);
-        final MainPageCalendarGridViewAdapter gAdapter = new MainPageCalendarGridViewAdapter(this, tempSelected);
+        final MainPageCalendarGridViewAdapter gAdapter = new MainPageCalendarGridViewAdapter(this, tempSelected, this.user);
         gView.setAdapter(gAdapter);// 设置菜单Adapter
         gView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("ResourceAsColor")
@@ -457,7 +457,7 @@ public class MainPage extends Activity  implements View.OnClickListener {
                 mAdapter.setSelectPos(position);
                 selectView = parent.getChildAt(mAdapter.selectPos);
                 selectHolder = (DayViewHolder) selectView.getTag();
-                selectHolder.itemLayout.setBackgroundResource(R.drawable.solid_ovel);
+                selectHolder.itemLayout.setBackgroundResource(R.drawable.main_page_day_solid_ovel);
                 selectHolder.itemDay.setTextColor(Color.WHITE);
                 refreshList(user);
             }
