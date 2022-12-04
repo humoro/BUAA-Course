@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/compiler design/projects/compiler2.2/WordAnalysis.cpp
+bits/stdc++.h
+-
+WordType.h
+D:/compiler design/projects/compiler2.2/WordType.h
+
+D:/compiler design/projects/compiler2.2/WordAnalysis.h
+WordType.h
+D:/compiler design/projects/compiler2.2/WordType.h
+
+D:/compiler design/projects/compiler2.2/WordType.h
+
+D:/compiler design/projects/compiler2.2/main.cpp
+bits/stdc++.h
+-
+WordType.h
+D:/compiler design/projects/compiler2.2/WordType.h
+WordAnalysis.h
+D:/compiler design/projects/compiler2.2/WordAnalysis.h
+
+D:/compiler design/projects/compiler2.2/printAns.cpp
+bits/stdc++.h
+-
+WordType.h
+D:/compiler design/projects/compiler2.2/WordType.h
+

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/compiler design/projects/compiler2.2/ChJudgeFuncs.cpp
+bits/stdc++.h
+-
+
+D:/compiler design/projects/compiler2.2/StrJudgeFuncs.cpp
+iostream
+-
+
+D:/compiler design/projects/compiler2.2/WordAnalysis.cpp
+bits/stdc++.h
+-
+WordType.h
+D:/compiler design/projects/compiler2.2/WordType.h
+
+D:/compiler design/projects/compiler2.2/WordType.h
+unordered_map
+-
+vector
+-
+

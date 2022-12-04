@@ -1,0 +1,60 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/compiler design/CompilerDesign/compiler3.1/ChJudgeFuncs.cpp
+iostream
+-
+
+D:/compiler design/CompilerDesign/compiler3.1/StrJudgeFuncs.cpp
+iostream
+-
+
+D:/compiler design/CompilerDesign/compiler3.1/SyntaxParser.cpp
+fstream
+-
+cstdio
+-
+unordered_map
+-
+SyntaxParser.h
+D:/compiler design/CompilerDesign/compiler3.1/SyntaxParser.h
+Types.h
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+
+D:/compiler design/CompilerDesign/compiler3.1/SyntaxParser.h
+Types.h
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+iostream
+-
+
+D:/compiler design/CompilerDesign/compiler3.1/WordAnalysis.cpp
+fstream
+-
+Types.h
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+
+D:/compiler design/CompilerDesign/compiler3.1/printFuncs.cpp
+unordered_map
+-
+fstream
+-
+Types.h
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+
+D:/compiler design/CompilerDesign/compiler3.1/statementsParser.cpp
+fstream
+-
+unordered_map
+-
+SyntaxParser.h
+D:/compiler design/CompilerDesign/compiler3.1/SyntaxParser.h
+Types.h
+D:/compiler design/CompilerDesign/compiler3.1/Types.h
+

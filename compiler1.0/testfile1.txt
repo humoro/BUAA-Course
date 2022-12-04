@@ -1,0 +1,191 @@
+const char testC = 'A';
+const char testc = '_',testc1 = 'a',testc2 = 'A',testc3 = '0',testc10 = '*',testc11 = '/';
+const int testIntbegin = -0,testIntend = +100,testInt1 = 34;
+const int testI = -34;
+int begin,end,testi;
+int is[100];
+char getc,getc0,getc1;
+char cs[100];
+int testfunci() {
+	int a;
+	scanf(a);
+	return (a * a + a - a / a);
+}
+int testfunci1(int argc1) {
+	scanf(argc1);
+	return (argc1 - argc1 / 10 * 10);
+	
+}
+int testfunci2(int a,char a1,int a2,char a3) {
+	a2 = a3 * a - a1;
+	return (a2);
+}
+void testfuncv() {
+	printf("this is a testfunc with no parameter!");
+}
+void testfuncv1(char argc) {
+	const char ans = '+';
+	printf(ans);
+	printf("testfuncv1 test passed!");
+}
+void testfuncv2(int argc1,int argc2,char argc3,int argc4) {
+	argc2 = argc3 * argc4 - argc1 / (argc2 - argc3 * (-1));
+	printf(argc2);
+	return;
+}
+char testfuncc() {
+	char ans;
+	int i;
+	printf("you should input a char now!");
+	scanf(ans);
+	for (ans = 'a';ans <= 'z';i = i + 1) {
+		printf(ans);
+	}
+	return (ans);
+}
+char testfuncc1(int argc) {
+	char s;
+	scanf(s);
+	printf(argc * s - s * ( -1) );
+	return (s);
+}
+char testfunc2(char argc1,char argc2,int argv) {
+	char ans;
+	argv = argc1 - argc2 * 2;
+	printf(argv);
+	printf(argc1);
+	scanf(ans);
+	return (ans);
+}
+void ioTest(int printpre,char printprec) {
+	int argv[100];
+	int i;
+	i = 0;
+	for (i = printpre;i <= testIntend;i = i + 8) {
+		scanf(printpre,printprec);
+		argv[i] = i;
+	}
+	printf(argv[i * testfunci1(i) - 1] + i * (i - 123) - 1);
+	printf("this is the io test end",printpre);
+}
+int returnTest0() {
+	const int a = 1;
+	return (a * a - a / 10 * 10 * (a + a - a / 277 * a));
+}
+char returnTest1() {
+	char a;
+	scanf(a);
+	return (a);
+}
+void returnTest2() {
+	return;
+}
+void emptyTest() {}
+int assistFunc1() {
+	return (1);
+}
+int assistFunc2() {
+	return (assistFunc1() + 2 * testfunci1(1) - 1);
+}
+char assistFunca() {
+	return ('a');
+}
+char assistFuncb() {
+	char ans;
+	ans = testc1;
+	return (ans);
+}
+void main() {
+	const char testc4 = 'z';
+	const char testc5 = 'Z',testc6 = '9',testc7 = '_';
+	const int testInt2 = -0,testInt3 = +19,testInt4 = 1;
+
+	char mainc,mainc1,minc;
+	char maint;
+	char allc[100];
+
+	int maxi,mini;
+	int _fori,_forj,for_i,for_i0;
+	int fori1;
+	int allint[100];
+	int assigni,assigni1;
+	int assignA[1000];
+
+	printf("assign statement test begin!");
+	assigni = testInt2;
+	assignA[assigni] = + testIntend;
+	assigni = -testIntbegin * assigni;
+	assigni1 = + testIntend * (- assigni) - assignA[0] * (assigni - assistFunc1() * ( - 1 + assistFunc2()) );
+	printf(assigni1);
+	_fori = 1;
+	for (for_i = testIntbegin;for_i < testIntend;for_i = for_i + 1) {
+		_fori = _fori * (-1);
+		assignA[for_i] = _fori * for_i;
+	}
+	assignA[assistFunc1()] = + assistFunc1() / (assistFunc1() + 1);
+	assignA[assistFunc2()] = + testIntend * (- assigni) - assignA[0] * (assigni - assistFunc1() / (assistFunc1() - 1) );
+	assignA[assistFunc1() + assistFunc2() / (assignA[assigni] - 2) + assigni1] = + testIntend * (- assigni) - assignA[0] * (assigni - assistFunc1() / (assistFunc1() - 1) );
+	printf("you'v passed the assign statement test!");
+
+
+	printf("judge statement test begin!"); 
+	if (assigni == assignA[assigni]) {
+		if (assigni  + assistFunc2() * (- assistFunc1() + assignA[assigni1])) {
+			printf("the first print in the judge test!");
+		}
+		if (assignA[assistFunc2() + assigni] != (assigni - 89)) {
+			printf("the second print in the judge test!");
+		} else {
+			if (assigni >= assistFunc1() + testfunci1(assigni)) {
+				printf("the third print in the judge test!");
+			}
+		}
+		if (assigni + assignA[assigni] * testfunci1(assignA[assistFunc1()]) <= testfunci1(assignA[0])) {
+			printf("the forth print in the judge test!");
+		}
+	} else {
+		if (assignA[testfunci1(assigni)]) {
+			printf("the fifth print in the judge test!");
+		} else {
+			if (testI < testfunci1(testI)) {
+				printf("the sixth print in the judge test!");
+			}
+		}
+	}
+	if (testc1 > testc2) {
+		printf("the seventh print in the judge test!");
+	}
+	printf("you'v passed the judge statement test!");
+
+
+	printf("cicle statement test begin!");
+	for (for_i = assigni + testfunci1(assignA[assistFunc1()]) * assistFunc2();for_i >= testfunci1(assigni);for_i = for_i - 1) {
+		if (for_i == for_i) {
+			testfunci1(assigni1);
+		} else {
+			return;
+		}
+ 		scanf(for_i);
+	}
+	for (_forj = for_i;_forj <= testfunci1(assigni1);_forj = _forj + 901) {
+		if (_forj < testfunci1(_forj)) {
+			printf(_forj);
+		} 
+		testfuncv();
+	}
+	do {
+		for_i = for_i + (-1) * testc;
+	}while (assignA[assistFunc1()]);
+	while (testfunci1(for_i)) {
+		printf("_*/ sskc44545kdc",for_i);
+	}
+	printf("you'v passed the cicle statement test!");
+
+	printf("func use test begin!");
+	ioTest(assigni1,testc);
+	returnTest0();
+	returnTest1();
+	returnTest2();
+	emptyTest();
+	printf("you'v passed the func use test!");
+}
