@@ -1,1 +1,2 @@
-### this is the project of personal homeword of SE BUAA, which is a calendar app
+### Project of SE BUAA
+#### Personal Project: Android Calendar App
